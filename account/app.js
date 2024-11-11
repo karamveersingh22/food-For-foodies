@@ -16,8 +16,6 @@ connectDB();
 const app = express()
 
 
-
-
 // MongoDB connection
 // mongodb://localhost:27017/authDB
 
