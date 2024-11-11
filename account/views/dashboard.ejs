@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard - Order Menu</title>
+</head>
+<body>
+  <h1>CANTEEN MENU</h1>
+  
+  <form action="/order" method="POST">
+    <!-- Chicken Main Course -->
+    <h3>CHICKEN MAIN COURSE</h3>
+    <label><input type="checkbox" name="items[CHICKEN CURRY]" value="70"> CHICKEN CURRY - 70</label>
+    Quantity: <input type="number" name="quantities[CHICKEN CURRY]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN HOME STYLE CURRY]" value="80"> CHICKEN HOME STYLE CURRY - 80</label>
+    Quantity: <input type="number" name="quantities[CHICKEN HOME STYLE CURRY]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN KASA]" value="80"> CHICKEN KASA - 80</label>
+    Quantity: <input type="number" name="quantities[CHICKEN KASA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN BUTTER MASALA]" value="90"> CHICKEN BUTTER MASALA - 90</label>
+    Quantity: <input type="number" name="quantities[CHICKEN BUTTER MASALA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN MOGLAI]" value="90"> CHICKEN MOGLAI - 90</label>
+    Quantity: <input type="number" name="quantities[CHICKEN MOGLAI]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN DO-PIAZA]" value="90"> CHICKEN DO-PIAZA - 90</label>
+    Quantity: <input type="number" name="quantities[CHICKEN DO-PIAZA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[KADAI CHICKEN]" value="90"> KADAI CHICKEN - 90</label>
+    Quantity: <input type="number" name="quantities[KADAI CHICKEN]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN HYDERABADI]" value="90"> CHICKEN HYDERABADI - 90</label>
+    Quantity: <input type="number" name="quantities[CHICKEN HYDERABADI]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN CHATPATI]" value="90"> CHICKEN CHATPATI - 90</label>
+    Quantity: <input type="number" name="quantities[CHICKEN CHATPATI]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHILLI CHICKEN]" value="80"> CHILLI CHICKEN - 80</label>
+    Quantity: <input type="number" name="quantities[CHILLI CHICKEN]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN MANCHURIAN]" value="80"> CHICKEN MANCHURIAN - 80</label>
+    Quantity: <input type="number" name="quantities[CHICKEN MANCHURIAN]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN KORMA]" value="100"> CHICKEN KORMA - 100</label>
+    Quantity: <input type="number" name="quantities[CHICKEN KORMA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[EGG CHICKEN TADKA]" value="60"> EGG CHICKEN TADKA - 60</label>
+    Quantity: <input type="number" name="quantities[EGG CHICKEN TADKA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[CHICKEN PAKODA]" value="160"> CHICKEN PAKODA (80/6 PC) - 160 (12 PC) (FOR BONELESS RS 10.00 EXTRA FOR HALF PLATE AND RS 20.00 EXTRA FOR FULL PLATE)</label>
+    Quantity: <input type="number" name="quantities[CHICKEN PAKODA]" min="1" value="1"><br>
+
+    <!-- Bread -->
+    <h3>BREAD</h3>
+    <label><input type="checkbox" name="items[PLAIN ROTI]" value="6"> PLAIN ROTI - 06</label>
+    Quantity: <input type="number" name="quantities[PLAIN ROTI]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[PLAIN PARATHA]" value="10"> PLAIN PARATHA - 10</label>
+    Quantity: <input type="number" name="quantities[PLAIN PARATHA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[ALU PARATHA]" value="15"> ALU PARATHA - 15</label>
+    Quantity: <input type="number" name="quantities[ALU PARATHA]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[LACHA PARATHA]" value="20"> LACHA PARATHA - 20</label>
+    Quantity: <input type="number" name="quantities[LACHA PARATHA]" min="1" value="1"><br>
+
+    <!-- Rice -->
+    <h3>RICE</h3>
+    <label><input type="checkbox" name="items[PLAIN RICE]" value="30"> PLAIN RICE - 30</label>
+    Quantity: <input type="number" name="quantities[PLAIN RICE]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[PLAIN RICE (BASMATI)]" value="60"> PLAIN RICE (BASMATI) - 60</label>
+    Quantity: <input type="number" name="quantities[PLAIN RICE (BASMATI)]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[JEERA RICE]" value="80"> JEERA RICE - 80</label>
+    Quantity: <input type="number" name="quantities[JEERA RICE]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[LEMON RICE]" value="80"> LEMON RICE - 80</label>
+    Quantity: <input type="number" name="quantities[LEMON RICE]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[FRIED RICE (VEG)]" value="80"> FRIED RICE (VEG) - 80</label>
+    Quantity: <input type="number" name="quantities[FRIED RICE (VEG)]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[SCHEWAN VEG FRIED RICE]" value="90"> SCHEWAN VEG FRIED RICE - 90</label>
+    Quantity: <input type="number" name="quantities[SCHEWAN VEG FRIED RICE]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[FRIED RICE (EGG)]" value="100"> FRIED RICE (EGG) - 100</label>
+    Quantity: <input type="number" name="quantities[FRIED RICE (EGG)]" min="1" value="1"><br>
+    
+    <label><input type="checkbox" name="items[FRIED RICE (CHICKEN & EGG)]" value="120"> FRIED RICE (CHICKEN & EGG) - 120</label>
+    Quantity: <input type="number" name="quantities[FRIED RICE (CHICKEN & EGG)]" min="1" value="1"><br>
+
+    <!-- Add more items as needed -->
+
+    <button type="submit">Place Order</button>
+  </form>
+</body>
+</html>

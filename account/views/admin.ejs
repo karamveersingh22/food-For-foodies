@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+</head>
+<body>
+  <h1>Admin Panel</h1>
+
+  <!-- Order Management -->
+  <section>
+    <h2>Order Management</h2>
+
+    <div style="display: flex; justify-content: space-between;">
+      <!-- Pending Orders -->
+      <div>
+        <h3>Pending Orders</h3>
+        <ul>
+          <% if (pendingOrders.length === 0) { %>
+            <p>No pending orders.</p>
+          <% } else { %>
+            <% pendingOrders.forEach(order => { %>
+              <li>
+                <strong>Order #<%= order._id %>:</strong> <%= order.items.map(i => `${i.name} x${i.quantity}`).join(', ') %> - Total: <%= order.total %>
+                <form action="/admin/complete-order/<%= order._id %>" method="POST" style="display:inline;">
+                  <button type="submit">Mark as Completed</button>
+                </form>
+              </li>
+            <% }); %>
+          <% } %>
+        </ul>
+      </div>
+
+      <!-- Completed Orders -->
+      <div>
+        <h3>Completed Orders</h3>
+        <ul>
+          <% if (completedOrders.length === 0) { %>
+            <p>No completed orders.</p>
+          <% } else { %>
+            <% completedOrders.forEach(order => { %>
+              <li>
+                <strong>Order #<%= order._id %>:</strong> <%= order.items.map(i => `${i.name} x${i.quantity}`).join(', ') %> - Total: <%= order.total %>
+              </li>
+            <% }); %>
+          <% } %>
+        </ul>
+        <h4>Grand Total Sales: <%= totalSales %></h4>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

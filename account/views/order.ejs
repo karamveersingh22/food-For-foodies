@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Summary</title>
+</head>
+<body>
+  <h1>Order Summary</h1>
+
+  <table border="1" cellpadding="10" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orderItems.forEach(item => { %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.price %></td>
+          <td><%= item.quantity %></td>
+          <td><%= item.itemTotal %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" style="text-align: right;"><strong>Total Amount:</strong></td>
+        <td><%= total %></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Confirm Order Button -->
+  <form action="/confirm-order" method="POST" style="margin-top: 20px;">
+    <button type="submit">Confirm Your Order</button>
+  </form>
+
+  <div style="margin-top: 20px;">
+    <a href="/dashboard">Back to Menu</a>
+  </div>
+</body>
+</html>
