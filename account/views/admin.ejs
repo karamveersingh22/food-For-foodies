@@ -1,3 +1,4 @@
+<!-- admin.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,10 @@
           <% } else { %>
             <% pendingOrders.forEach(order => { %>
               <li>
-                <strong>Order #<%= order._id %>:</strong> <%= order.items.map(i => `${i.name} x${i.quantity}`).join(', ') %> - Total: <%= order.total %>
+                <!-- Display the user's name for each order -->
+                <h4>User: <%= order.userName %></h4>
+                <strong>Order #<%= order._id %>:</strong> 
+                <%= order.items.map(i => `${i.name} x${i.quantity}`).join(', ') %> - Total: <%= order.total %>
                 <form action="/admin/complete-order/<%= order._id %>" method="POST" style="display:inline;">
                   <button type="submit">Mark as Completed</button>
                 </form>

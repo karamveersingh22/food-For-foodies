@@ -1,3 +1,5 @@
+// seedMenu.js
+
 require('dotenv').config(); // Load environment variables from .env
 const mongoose = require('mongoose');
 const MenuItem = require('./models/MenuItem'); // Ensure the path is correct

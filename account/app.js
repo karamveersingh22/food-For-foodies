@@ -16,6 +16,7 @@ connectDB();
 const app = express()
 
 
+
 // MongoDB connection
 // mongodb://localhost:27017/authDB
 
@@ -70,51 +71,54 @@ app.get('/login', (req, res) => {
 });
 
 // app.js
+// app.js
+
 app.post('/register', async (req, res) => {
-    const { email, password, role } = req.body;
-    
-    // Check if user already exists
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      req.flash('error', 'User already registered. Please login.');
-      return res.redirect('/login');
-    }
+  const { email, password, role } = req.body;
   
-    // Create and save the new user with role
-    const user = new User({ email, password, role });
-    await user.save();
-    req.flash('success', 'Registration successful. You can now log in.');
-    res.redirect('/login');
-  });
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    req.flash('error', 'User already registered. Please login.');
+    return res.redirect('/login');
+  }
+
+  const user = new User({ email, password, role });
+  await user.save();
+  
+  req.session.userName = email.split('@')[0]; // Save username (or get user's name if available)
+  req.flash('success', 'Registration successful. You can now log in.');
+  res.redirect('/login');
+});
+
   
 
-  app.post('/login', async (req, res) => {
-    const { email, password, role } = req.body;
+ // app.js
+
+app.post('/login', async (req, res) => {
+  const { email, password, role } = req.body;
+  const user = await User.findOne({ email, role });
+  if (!user) {
+    req.flash('error', 'No account found with this role. Please check your role or register.');
+    return res.redirect('/login');
+  }
   
-    // Find user with specified role
-    const user = await User.findOne({ email, role });
-    if (!user) {
-      req.flash('error', 'No account found with this role. Please check your role or register.');
-      return res.redirect('/login');
-    }
-  
-    // Verify password
-    const isMatch = await user.comparePassword(password);
-    if (!isMatch) {
-      req.flash('error', 'Invalid credentials. Please try again.');
-      return res.redirect('/login');
-    }
-  
-    // Redirect based on role
-    if (user.role === 'admin') {
-      req.flash('success', 'Logged in as Admin.');
-      res.redirect('/admin');
-    } else {
-      req.flash('success', 'Logged in successfully!');
-      res.redirect('/dashboard');
-    }
-  });
-  
+  const isMatch = await user.comparePassword(password);
+  if (!isMatch) {
+    req.flash('error', 'Invalid credentials. Please try again.');
+    return res.redirect('/login');
+  }
+
+  req.session.userName = email.split('@')[0]; // Save username (or get user's name if available)
+
+  if (user.role === 'admin') {
+    req.flash('success', 'Logged in as Admin.');
+    res.redirect('/admin');
+  } else {
+    req.flash('success', 'Logged in successfully!');
+    res.redirect('/dashboard');
+  }
+});
+
   
   app.get('/dashboard', async (req, res) => {
     try {
@@ -129,27 +133,42 @@ app.post('/register', async (req, res) => {
   
   
   
-  app.post('/order', async (req, res) => {
-    const items = req.body.items || {}; // Selected items with their prices
-    const quantities = req.body.quantities || {}; // Quantities with a default empty object if not provided
+  // app.js
+
+app.post('/order', async (req, res) => {
+  const items = req.body.items || {};
+  const quantities = req.body.quantities || {};
   
-    let orderItems = [];
-    let total = 0;
+  let orderItems = [];
+  let total = 0;
   
-    // Calculate total for each item and accumulate total bill
-    for (let itemName in items) {
-      const price = parseFloat(items[itemName]);
-      const quantity = quantities[itemName] ? parseInt(quantities[itemName], 10) : 1;
-      const itemTotal = price * quantity;
-      total += itemTotal;
-  
-      // Store item details for rendering
-      orderItems.push({ name: itemName, price, quantity, itemTotal });
-    }
-  
+  for (let itemName in items) {
+    const price = parseFloat(items[itemName]);
+    const quantity = quantities[itemName] ? parseInt(quantities[itemName], 10) : 1;
+    const itemTotal = price * quantity;
+    total += itemTotal;
+    orderItems.push({ name: itemName, price, quantity, itemTotal });
+  }
+
+  // Save order details to the database
+  try {
+    const order = new Order({
+      items: orderItems.map(item => ({ name: item.name, quantity: item.quantity, price: item.price })),
+      total,
+      status: 'pending',
+      userName: req.session.userName // Assuming user's name is stored in session
+    });
+    await order.save();
+
     // Render the order summary
     res.render('order', { orderItems, total });
-  });
+  } catch (error) {
+    console.error('Error saving order:', error);
+    req.flash('error', 'Error placing order.');
+    res.redirect('/dashboard');
+  }
+});
+
   
   
   
