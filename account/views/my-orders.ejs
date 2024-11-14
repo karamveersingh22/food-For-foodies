@@ -1,0 +1,31 @@
+<!-- views/my-orders.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Orders</title>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  <h1>My Orders</h1>
+
+  <% if (userOrders.length === 0) { %>
+    <p>You have not placed any orders yet.</p>
+  <% } else { %>
+    <ul>
+      <% userOrders.forEach(order => { %>
+        <li>
+          <h4>Order #<%= order._id %> - Status: <%= order.status %></h4>
+          <ul>
+            <% order.items.forEach(item => { %>
+              <li><%= item.name %> x<%= item.quantity %> - Price: <%= item.price %></li>
+            <% }); %>
+          </ul>
+          <p><strong>Total Amount:</strong> <%= order.total %></p>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+</body>
+</html>

@@ -1,4 +1,5 @@
 <!-- confirm-order.ejs -->
+<!-- confirm-order.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,9 +8,11 @@
   <title>Order Confirmation</title>
 </head>
 <body>
+  <%- include('partials/navbar') %>
   <h1 style="text-align: center; margin-top: 50px;">Thank you, your order has been placed successfully!</h1>
   <div style="text-align: center; margin-top: 20px;">
-    <a href="/dashboard">Back to Menu</a>
+    <!-- Change button to redirect to /my-orders -->
+    <a href="/my-orders"><button>Go to Your Orders</button></a>
   </div>
 </body>
 </html>

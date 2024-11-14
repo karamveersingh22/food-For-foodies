@@ -1,0 +1,52 @@
+/* public/styles.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#navbar > ul > li {
+    position: relative;
+    margin-right: 20px;
+}
+
+#navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#navbar ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#navbar ul li:hover ul {
+    display: block;
+}
+
+#navbar ul li ul li {
+    margin-bottom: 10px;
+}
+
+#main-content {
+    padding: 20px;
+    margin-top: 50px; /* Offset content from navbar */
+}

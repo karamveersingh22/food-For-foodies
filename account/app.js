@@ -54,12 +54,20 @@ app.use(session({
 }));
 app.use(flash());
 
+// Middleware to set showNavbar variable
+app.use((req, res, next) => {
+  res.locals.showNavbar = !(req.path === '/login' || req.path === '/register');
+  next();
+});
+
 // Global variables for flash messages
 app.use((req, res, next) => {
   res.locals.error = req.flash('error');
   res.locals.success = req.flash('success');
   next();
 });
+
+
 
 // Routes
 app.get('/register', (req, res) => {
@@ -178,6 +186,27 @@ app.post('/order', async (req, res) => {
   app.post('/confirm-order', (req, res) => {
     res.render('confirm-order');
   });
+
+  // app.js
+
+// Route to display user's orders
+app.get('/my-orders', async (req, res) => {
+  try {
+    if (!req.session.userName) {
+      req.flash('error', 'You need to log in to view your orders.');
+      return res.redirect('/login');
+    }
+
+    const userOrders = await Order.find({ userName: req.session.userName });
+
+    res.render('my-orders', { userOrders });
+  } catch (error) {
+    console.error('Error fetching user orders:', error);
+    req.flash('error', 'Error fetching your orders.');
+    res.redirect('/dashboard');
+  }
+});
+
   
 //   ***********************************************************admin side 
 
@@ -200,9 +229,13 @@ app.get('/admin', async (req, res) => {
 });
 
 // Mark Order as Completed
+// app.js
+
+// Mark Order as Completed
 app.post('/admin/complete-order/:id', async (req, res) => {
   const orderId = req.params.id;
   try {
+    // Update the order's status to 'completed' without changing other fields
     await Order.findByIdAndUpdate(orderId, { status: 'completed' });
     req.flash('success', 'Order marked as completed.');
     res.redirect('/admin');
@@ -212,6 +245,7 @@ app.post('/admin/complete-order/:id', async (req, res) => {
     res.redirect('/admin');
   }
 });
+
 
 
 // Server start

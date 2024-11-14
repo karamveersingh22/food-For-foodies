@@ -1,32 +1,30 @@
-<!-- register.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Register</title>
+    <meta charset="UTF-8">
+    <title>Register</title>
 </head>
 <body>
-  <h2>Register</h2>
-  <% if (error) { %><p style="color: red;"><%= error %></p><% } %>
-  <form action="/register" method="POST">
-    <div>
-      <label>Email:</label>
-      <input type="email" name="email" required>
-    </div>
-    <div>
-      <label>Password:</label>
-      <input type="password" name="password" required>
-    </div>
-    <div>
-      <label>Role:</label>
-      <select name="role" required>
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-      </select>
-    </div>
-    <button type="submit">Register</button>
-  </form>
-  <p>Already registered? <a href="/login">Login here</a>.</p>
+    <h2>Register</h2>
+    <% if (error) { %><p style="color: red;"><%= error %></p><% } %>
+    <form action="/register" method="POST">
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <label>Role:</label>
+            <select name="role" required>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already registered? <a href="/login">Login here</a>.</p>
 </body>
 </html>

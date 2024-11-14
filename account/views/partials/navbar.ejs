@@ -1,0 +1,69 @@
+<nav class="navbar">
+    <ul class="nav-list">
+        <li class="nav-item dropdown">
+            <span class="dropdown-trigger">User</span>
+            <ul class="dropdown-content">
+                <li><a href="/my-orders">Your Orders</a></li>
+                <li><a href="/dashboard">Menu</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <span class="dropdown-trigger">Admin</span>
+            <ul class="dropdown-content">
+                <li><a href="/admin">Manage</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    .navbar {
+        background-color: #333;
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .nav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-item {
+        position: relative;
+        color: white;
+    }
+
+    .dropdown-trigger {
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 1;
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav-item:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content li a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content li a:hover {
+        background-color: #f1f1f1;
+    }
+</style>
